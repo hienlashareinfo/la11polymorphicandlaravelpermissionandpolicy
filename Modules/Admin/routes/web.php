@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Modules\Admin\Http\Controllers\AdminController;
 use Modules\Admin\Http\Controllers\ConfigController;
+use Modules\Admin\Http\Middleware\AdminMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +18,5 @@ use Modules\Admin\Http\Controllers\ConfigController;
 
 Route::group([], function () {
     Route::resource('admin', AdminController::class)->names('admin');
-    Route::resource('config', ConfigController::class);
+    Route::resource('config', ConfigController::class)->middleware(AdminMiddleware::class);
 });
