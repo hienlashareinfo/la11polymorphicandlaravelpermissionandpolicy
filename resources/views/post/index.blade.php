@@ -14,5 +14,4 @@
 @endcan
 
 
-<h3>Xin chào</h3>
 @endsection

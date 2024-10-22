@@ -15,17 +15,20 @@ class PostController extends Controller
 
     public static function middleware(): array
     {
-    return [
-        'auth',
-        new Middleware('permission:post.index', only: ['index']),
-        new Middleware('subscribed', except: ['store']),
-    ];
+        return [
+            'auth',
+            new Middleware('permission:post.index', only: ['index']),
+            new Middleware('subscribed', except: ['store']),
+        ];
     }
 
 
-    public function demo()
+    public function demo(Request $request)
     {
         Gate::authorize('viewAny', Post::class);
+        $request->validate(['email' => 'required', 'password' => 'required'], [
+            'email.required' => 'Xin chào;',
+        ]);
     }
     /**
      * Display a listing of the resource.
@@ -43,7 +46,6 @@ class PostController extends Controller
     public function create()
     {
         Gate::authorize('create', Post::class);
-
         dd(3);
     }
 
