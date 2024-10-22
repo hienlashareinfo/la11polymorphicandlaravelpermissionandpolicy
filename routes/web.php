@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DemologController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
@@ -34,6 +35,8 @@ Route::get('post/demo', [PostController::class, 'demo']);
 Route::get('post/create', [PostController::class, 'create']);
 Route::get('post', [PostController::class, 'index'])
     ->middleware(['role_or_permission:admin|post.view']);
+
+Route::get('demo/log', [DemologController::class, 'index']);
 
 
 Route::get('/', function () {
